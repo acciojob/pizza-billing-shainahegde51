@@ -66,6 +66,6 @@ public class Pizza {
     public String getBill(){
         // your code goes here
         this.bill= Integer.toString(this.price);
-        return "Total Bill is:"+ this.bill;
+        return "Total Price: "+ this.bill;
     }
 }
