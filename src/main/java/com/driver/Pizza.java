@@ -4,21 +4,21 @@ public class Pizza {
 
     private int price;
     private Boolean isVeg;
-    private String bill;
-    int count=0;
-    int topping=0;
-    int cheese=0;
+    private String bill="";
+   Boolean isCheese=false;
+    Boolean isTopping=false;
+    Boolean isTakeaway=false;
+    Boolean BillGenerate=false;
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
         // your code goes here
         if(this.isVeg==true){
-            System.out.println("Base Price Of The Pizza: 300");
             this.price=300;
         }
         else{
-            System.out.println("Base Price Of The Pizza: 400");
             this.price=400;
         }
+        bill+="Base Price Of The Pizza:"+price+"\n";
     }
 
     public int getPrice(){
@@ -27,22 +27,24 @@ public class Pizza {
 
     public void addExtraCheese() {
         // your code goes here
-        cheese++;
-        if (cheese <= 1){
-            System.out.println("Extra Cheese Added: 80");
+        if (!isCheese){
+            isCheese=true;
             this.price += 80;
+            bill+="Extra Cheese Added:" + "80"+"\n";
         }
     }
 
     public void addExtraToppings(){
         // your code goes here
-        topping++;
-        if(topping<=1) {
+
+        if(!isTopping) {
             if (isVeg) {
-                System.out.println("Extra Toppings Added: 70");
+                isTopping=true;
+                bill+="Extra Toppings Added: 70"+"\n";
                 this.price += 70;
 
             } else {
+                isTopping=true;
                 System.out.println("Extra Toppings Added: 120");
                 this.price += 120;
             }
@@ -52,11 +54,9 @@ public class Pizza {
 
     public void addTakeaway(){
         // your code goes here
-        count++;
-        if(count<=1) {
-            System.out.println("Paper bag Added: 20");
-
-
+        if(!isTakeaway) {
+            isTakeaway=true;
+            bill+="Paper bag Added: 20"+"\n";
             this.price += 20;
         }
 
@@ -65,7 +65,10 @@ public class Pizza {
 
     public String getBill(){
         // your code goes here
-        this.bill= Integer.toString(this.price);
-        return "Total Price: "+ this.bill;
+        if(!BillGenerate){
+            BillGenerate=true;
+            bill+="Total Price:"+ price+"\n";
+        }
+        return  this.bill;
     }
 }
